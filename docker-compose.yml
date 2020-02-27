@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  pypiserver:
+    image: officerjones/pypiserver:${VERSION_TAG:-latest}
+    restart: unless-stopped
+    volumes:
+      - /mnt/media/pypi_repo:/data/packages
+    ports:
+      - 9999:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "192.168.0.14:9999"]
+      interval: 3m00s
+      timeout: 10s
+      retries: 3
