@@ -8,7 +8,6 @@ RUN addgroup -S -g 9898 pypiserver \
     && adduser -S -u 9898 -G pypiserver pypiserver \
     && mkdir -p /data/packages \
     && chown -R pypiserver:pypiserver /data/packages \
-    # Set the setgid bit so anything added here gets associated with the pypiserver group
     && chmod g+s /data/packages
 
 USER pypiserver
